@@ -1,44 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ActivityIcon,
-  AppWindowIcon,
-  ArrowDownToDotIcon,
-  ArrowLeft,
-  BarChart3,
-  Code2Icon,
-  DatabaseIcon,
-  FactoryIcon,
-  GemIcon,
-  LandmarkIcon,
+import {      
   BotIcon,
   PenLine,
-  FlaskConicalIcon,
-  GitCompareIcon,
+  FlaskConicalIcon, 
   Globe,
-  GraduationCapIcon,
-  HardDriveUploadIcon,
+  GraduationCapIcon, 
   LayoutDashboard,  
-  Menu,
-  Newspaper,
-  RulerIcon,
-  ScaleIcon,
+  Menu, 
   Settings,
-  PiIcon,
-  PencilRulerIcon,
-  WebhookIcon,
-  Workflow
-  
+  PiIcon    
 } from "lucide-react";
+
 import {
-  useParams,
-  usePathname,
+  useParams, 
   useSelectedLayoutSegments,
 } from "next/navigation";
-import { ReactNode, useEffect, useMemo, useState } from "react";
-import {useViewAction} from "@/app/providers"
-import { getSiteFromPostId } from "@/lib/actions";
+import { ReactNode, useState } from "react";
+
 import Image from "next/image";
 import { FileCode, Github } from "lucide-react";
 
@@ -84,19 +64,11 @@ const externalLinks = [
 
 export default function Nav({ children }: { children: ReactNode }) {
   
-  const [projectId, setProjectId] = useState<string | null>();
-  const {actionSelected, setActionSelected} = useViewAction()   //context shared across app
-  const [showSidebar, setShowSidebar] = useState(false);
+   const [showSidebar, setShowSidebar] = useState(false);
 
   const segments = useSelectedLayoutSegments();
   const { id } = useParams() as { id?: string };
-  const pathname = usePathname();
-
-  // console.log(`===============REFACTORING NAV ==========`)
-  // console.log(segments)
-  // console.log(id)
-  // console.log(pathname)
-  // console.log(actionSelected)
+ 
 
   
   const mainTabs = [
@@ -120,280 +92,8 @@ export default function Nav({ children }: { children: ReactNode }) {
     }
     
   ];
-
-  const projectTabs = [
-    {
-      name: "Back to All Projects",
-      href: "/projects",
-      icon: <ArrowLeft width={18} />,
-    },
-    {
-      name: "Actions",
-      href: `/project/${id}`,
-      isActive: segments.length === 2 && segments[0] !== "metrics",
-      icon: <Newspaper width={18} />,
-    },
-    {
-      name: "Analytics",
-      href: `/project/${id}/analytics`,
-      isActive: segments.includes("analytics"),
-      icon: <BarChart3 width={18} />,
-    },   
-    {
-      name: "Settings",
-      href: `/project/${id}/settings`,
-      isActive: segments.includes("settings"),
-      icon: <Settings width={18} />,
-    },
-  ];
-
-  const actionTabs = [
-    {
-      name: "Back to All Actions",
-      href: projectId ? `/project/${projectId}` : "/projects",
-      icon: <ArrowLeft width={18} />,
-    },       
-    {
-      name: "Settings",
-      href: `/action/${id}/settings`,
-      isActive: segments.includes("settings"),
-      icon: <Settings width={18} />,
-    },
-  ];
-
-  const view10ItemsTabs = [
-    { 
-      name: "Metrics", 
-      href: `/metrics/size`,
-      isActive: segments.includes("size"),
-      icon: <PencilRulerIcon width={18} />,
-    },
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-    
-    
-  ];  
-
-  const view5ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  const view8ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  
-  const view30ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  const view35ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  
-  const view40ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  
-  const view50ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  
-  const view60ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-   
-  
-  ];
-
-  
-  const view65ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  
-  const view80ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  const view90ItemsTabs = [
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-  
-  ];
-
-  const metricsTabs = [
-    { 
-      name: "Size", 
-      href: `/metrics/size`,
-      isActive: segments.includes("size"),
-      icon: <RulerIcon width={18} />,
-    },    
-    { 
-      name: "Architecture Complexity", 
-      href: `/metrics/architecture`,
-      isActive: segments.includes("architecture"),
-      icon: <LandmarkIcon width={18} />,
-    },
-    { 
-      name: "Code Complexity", 
-      href: `/metrics/code`,
-      isActive: segments.includes("code"),
-      icon: <ActivityIcon width={18} />,
-    },
-    { 
-      name: "Business Rule Complexity", 
-      href: `/metrics/rules`,
-      isActive: segments.includes("rules"),
-      icon: <ScaleIcon width={18} />,
-    },
-    {
-      name: "Action Grid",
-      href: `/project/${id}/repo`,
-      isActive: segments[0] === "repo",
-      icon: <Workflow width={18} />,
-    }
-    
-    
-  ]; 
-
-
-  useEffect(() => {
-    if (segments[0] !== "project") {
-      setActionSelected(0); // Reset to 0 when not in 'project'
-    }
-  }, [segments]);
-
-  useEffect(() => {
-    if (segments[0] === "action" && id) {
-      getSiteFromPostId(id).then((id) => {
-        setProjectId(id);
-      });
-    }
-  }, [segments, id]);
-
-
-  const tabs = useMemo(() => {
-    let baseTabs = []
-    if (segments[0] === "project" && id) {
-
-      baseTabs = [...projectTabs]
-      if (actionSelected === 5) {
-        baseTabs = [...baseTabs, ...view5ItemsTabs];
-      }  
-      if (actionSelected === 8) {
-        baseTabs = [...baseTabs, ...view8ItemsTabs];
-      }  
-
-      if (actionSelected === 10) {
-        baseTabs = [...baseTabs, ...view10ItemsTabs];
-      }      
-      if (actionSelected === 30) {
-        baseTabs = [...baseTabs, ...view30ItemsTabs];
-      }
-      if (actionSelected === 35) {
-        baseTabs = [...baseTabs, ...view35ItemsTabs];
-      }  
-      if (actionSelected === 40) {
-        baseTabs = [...baseTabs, ...view40ItemsTabs];
-      }
-      if (actionSelected === 50) {
-        baseTabs = [...baseTabs, ...view50ItemsTabs];
-      }
-      if (actionSelected === 60) {
-        baseTabs = [...baseTabs, ...view60ItemsTabs];
-      }
-      if (actionSelected === 65) {
-        baseTabs = [...baseTabs, ...view65ItemsTabs];
-      }
-      if (actionSelected === 80) {
-        baseTabs = [...baseTabs, ...view80ItemsTabs];
-      }
-      if (actionSelected === 90) {
-        baseTabs = [...baseTabs, ...view90ItemsTabs];
-      }
-      
-    } else if (segments[0] === "action" && id) {
-      baseTabs = [...actionTabs]
-    } else if (segments[0] === "metrics") {
-      baseTabs = [...projectTabs]
-      baseTabs = [...baseTabs, ...metricsTabs]
-    } else {
-      baseTabs = [...mainTabs]
-    }
-
-    return baseTabs
-    
-  }, [segments, id, projectId, actionSelected]);
-  
-
-  useEffect(() => {
-    // hide sidebar on path change
-    setShowSidebar(false);
-  }, [pathname]);
+ 
+  let  tabs = [...mainTabs ]  
 
   return (
     <>   

@@ -2,7 +2,7 @@
 
 import { random } from "@/lib/utils";
 import { Card, Metric, Text, AreaChart, BadgeDelta, Flex, BarChart, Title, Subtitle } from "@tremor/react";
-import { TerminalSquareIcon } from "lucide-react";
+
 import { useMemo } from "react";
 
 export default function OverviewStats() {

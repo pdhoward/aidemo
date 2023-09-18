@@ -1,10 +1,22 @@
 // pages/MyEditor.tsx
 import React, { useEffect, useRef } from "react";
-import MonacoEditor, { Monaco } from "@monaco-editor/react";
+import MonacoEditor from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 
 export default function Editor() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+
+  const handleSave = async () => {
+    if (editorRef.current) {
+      const content = editorRef.current.getValue();
+      // await fetch('/api/save', {
+      //   method: 'POST',
+      //   body: JSON.stringify({ content }),
+      //   headers: { 'Content-Type': 'application/json' },
+      // });
+      alert(`Saved to Github. ${content}`);
+    }
+  };
 
   const handleEditorDidMount = ( editorInstance: editor.IStandaloneCodeEditor ) => {
     editorRef.current = editorInstance;
@@ -38,12 +50,31 @@ export default function Editor() {
   };
 
   return (
-    <MonacoEditor
-      height="90vh"
-      language="javascript"
-      value={"// Start typing code..."}
-      onMount={handleEditorDidMount}
-    />
+    <div className="relative h-[90vh] overflow-hidden">
+      <button 
+        onClick={handleSave} 
+        className="absolute top-3 right-3 z-10 bg-gray-800 text-white p-2 rounded hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-500"
+      >
+        Save
+      </button>
+      <MonacoEditor
+        height="100%"
+        language="javascript"
+        theme="vs-dark"
+        value={"// Start typing code..."}
+        options={{
+          hover: {
+            enabled: true
+          },
+          minimap: {
+            enabled: true
+          },
+          lineNumbers: 'on',
+          automaticLayout: true, // automatically adjust the layout
+        }}
+        onMount={handleEditorDidMount}
+      />
+    </div>
   );
 };
 
