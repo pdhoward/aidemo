@@ -1,4 +1,4 @@
-import { InlineSnippet } from "@/components/form/domain-configuration";
+
 import BeginButton from "@/components/begin-button"
 import Image from "next/image";
 
