@@ -3,7 +3,7 @@
  */
 module.exports = {
   experimental: {
-    serverActions: true,
+    serverActions: false,
   }, 
   env: {
     MUI_LICENSE_KEY: process.env.MUI_LICENSE_KEY
