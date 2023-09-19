@@ -1,4 +1,3 @@
-"use client";
 
 import { random } from "@/lib/utils";
 import { Card, Metric, Text, AreaChart, BadgeDelta, Flex, BarChart, Title, Subtitle } from "@tremor/react";

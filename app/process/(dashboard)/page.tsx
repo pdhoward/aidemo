@@ -1,5 +1,4 @@
 
-"use client"
 import { Suspense } from "react";
 import Editor from "@/components/editor/editor"
 import PlaceholderCard from "@/components/placeholder-card";
