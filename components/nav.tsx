@@ -67,8 +67,10 @@ export default function Nav({ children }: { children: ReactNode }) {
   
    const [showSidebar, setShowSidebar] = useState(false);
 
-  const segments = useSelectedLayoutSegments();
-  const { id } = useParams() as { id?: string };
+  //const segments = useSelectedLayoutSegments();
+  const params = useParams()
+  //const { id } = useParams() as { id?: string };
+  const { id } = params || {};
  
 
   
@@ -76,25 +78,30 @@ export default function Nav({ children }: { children: ReactNode }) {
     {
       name: "Command Center",
       href: "/",
-      isActive: segments.length === 0,
+      isActive: false,
+      //isActive: segments.length === 0,
       icon: <LayoutDashboard width={18} />,
     },
     {
       name: "Projects",
       href: "/projects",
-      isActive: segments[0] === "projects",
+      isActive: false,
+      //isActive: segments[0] === "projects",
       icon: <Globe width={18} />,
     },    
     {
       name: "Account Settings",
       href: "/settings",
-      isActive: segments[0] === "settings",
+      isActive: false,
+      //isActive: segments[0] === "settings",
       icon: <Settings width={18} />,
     }
     
   ];
  
   let  tabs = [...mainTabs ]  
+
+  let segments = ["post"]
 
   return (
     <>   
