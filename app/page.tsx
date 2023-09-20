@@ -2,7 +2,7 @@
 import BeginButton from "@/components/begin-button"
 import Image from "next/image";
 
-export const runtime = 'edge'
+//export const runtime = 'edge'
 
 export default function HomePage() {
   return (
