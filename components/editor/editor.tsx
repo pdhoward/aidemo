@@ -1,4 +1,5 @@
 // pages/MyEditor.tsx
+'use client'
 import React, { useEffect, useRef } from "react";
 import MonacoEditor from "@monaco-editor/react";
 import { editor } from "monaco-editor";

@@ -1,10 +1,7 @@
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
-  experimental: {
-    serverActions: false,
-  }, 
+module.exports = {  
   env: {
     MUI_LICENSE_KEY: process.env.MUI_LICENSE_KEY
   },
