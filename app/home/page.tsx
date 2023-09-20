@@ -1,4 +1,4 @@
-
+"use client"
 import BeginButton from "@/components/begin-button"
 import Image from "next/image";
 
