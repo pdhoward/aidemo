@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import MonacoEditor from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 
-export const runtime = 'edge'
+//export const runtime = 'edge'
 
 const code = `import React, { FC } from 'react';
 import Link from 'next/link';
