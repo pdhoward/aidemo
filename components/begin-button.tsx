@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
+"use client"
 
-// note the path name in the href is processed in the middleware to
-// take the user to the multiclient applications
+import React from 'react';
+import Link from 'next/link';
 
 export default function Component() {    
   
